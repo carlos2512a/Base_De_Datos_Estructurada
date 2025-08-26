@@ -1,0 +1,139 @@
+CREATE TABLE CARGO 				
+    ( 				
+     ID_CARGO          VARCHAR2 (50)  NOT NULL , 				
+     NOMBRE_CARGO      VARCHAR2 (50)  NOT NULL , 				
+     DESCRIBCION_CARGO VARCHAR2 (100)  NOT NULL 				
+    ) 				
+;				
+				
+ALTER TABLE CARGO 				
+    ADD CONSTRAINT CARGO_PK PRIMARY KEY ( ID_CARGO ) ;				
+				
+CREATE TABLE COMUNA 				
+    ( 				
+     CODIGO_COM VARCHAR2 (50)  NOT NULL , 				
+     NOMBRE_COM VARCHAR2 (50)  NOT NULL 				
+    ) 				
+;				
+				
+ALTER TABLE COMUNA 				
+    ADD CONSTRAINT COMUNA_PK PRIMARY KEY ( CODIGO_COM ) ;				
+				
+CREATE TABLE DEPARTAMENTO 				
+    ( 				
+     ID_DEPARTAMENTO   VARCHAR2 (50)  NOT NULL , 				
+     NOMBRE_DEP        VARCHAR2 (50)  NOT NULL , 				
+     UBICACION_DEP     VARCHAR2 (50)  NOT NULL , 				
+     COMUNA_CODIGO_COM VARCHAR2 (50)  NOT NULL 				
+    ) 				
+;				
+				
+ALTER TABLE DEPARTAMENTO 				
+    ADD CONSTRAINT DEPARTAMENTO_PK PRIMARY KEY ( ID_DEPARTAMENTO ) ;				
+				
+CREATE TABLE EMPLEADO 				
+    ( 				
+     ID_EMPLEADO                  VARCHAR2 (50)  NOT NULL , 				
+     NOMBRE_EM                    VARCHAR2 (50)  NOT NULL , 				
+     APELLIDO_EM                  VARCHAR2 (50)  NOT NULL , 				
+     SUELDO_EM                    VARCHAR2 (50)  NOT NULL , 				
+     FECHA_CONTRATO_EM            DATE  NOT NULL , 				
+     PORCENTAJE_EM                NUMBER (1,50)  NOT NULL , 				
+     COMUNA_CODIGO_COM            VARCHAR2 (50)  NOT NULL , 				
+     DEPARTAMENTO_ID_DEPARTAMENTO VARCHAR2 (50)  NOT NULL , 				
+     CARGO_ID_CARGO               VARCHAR2 (50)  NOT NULL 				
+    ) 				
+;				
+				
+ALTER TABLE EMPLEADO 				
+    ADD CONSTRAINT EMPLEADO_PK PRIMARY KEY ( ID_EMPLEADO ) ;				
+				
+ALTER TABLE DEPARTAMENTO 				
+    ADD CONSTRAINT DEPARTAMENTO_COMUNA_FK FOREIGN KEY 				
+    ( 				
+     COMUNA_CODIGO_COM				
+    ) 				
+    REFERENCES COMUNA 				
+    ( 				
+     CODIGO_COM				
+    ) 				
+;				
+				
+ALTER TABLE EMPLEADO 				
+    ADD CONSTRAINT EMPLEADO_CARGO_FK FOREIGN KEY 				
+    ( 				
+     CARGO_ID_CARGO				
+    ) 				
+    REFERENCES CARGO 				
+    ( 				
+     ID_CARGO				
+    ) 				
+;				
+				
+ALTER TABLE EMPLEADO 				
+    ADD CONSTRAINT EMPLEADO_COMUNA_FK FOREIGN KEY 				
+    ( 				
+     COMUNA_CODIGO_COM				
+    ) 				
+    REFERENCES COMUNA 				
+    ( 				
+     CODIGO_COM				
+    ) 				
+;				
+				
+ALTER TABLE EMPLEADO 				
+    ADD CONSTRAINT EMPLEADO_DEPARTAMENTO_FK FOREIGN KEY 				
+    ( 				
+     DEPARTAMENTO_ID_DEPARTAMENTO				
+    ) 				
+    REFERENCES DEPARTAMENTO 				
+    ( 				
+     ID_DEPARTAMENTO				
+    ) 				
+;				
+				
+				
+				
+-- Informe de Resumen de Oracle SQL Developer Data Modeler: 				
+-- 				
+-- CREATE TABLE                             4				
+-- CREATE INDEX                             0				
+-- ALTER TABLE                              8				
+-- CREATE VIEW                              0				
+-- ALTER VIEW                               0				
+-- CREATE PACKAGE                           0				
+-- CREATE PACKAGE BODY                      0				
+-- CREATE PROCEDURE                         0				
+-- CREATE FUNCTION                          0				
+-- CREATE TRIGGER                           0				
+-- ALTER TRIGGER                            0				
+-- CREATE COLLECTION TYPE                   0				
+-- CREATE STRUCTURED TYPE                   0				
+-- CREATE STRUCTURED TYPE BODY              0				
+-- CREATE CLUSTER                           0				
+-- CREATE CONTEXT                           0				
+-- CREATE DATABASE                          0				
+-- CREATE DIMENSION                         0				
+-- CREATE DIRECTORY                         0				
+-- CREATE DISK GROUP                        0				
+-- CREATE ROLE                              0				
+-- CREATE ROLLBACK SEGMENT                  0				
+-- CREATE SEQUENCE                          0				
+-- CREATE MATERIALIZED VIEW                 0				
+-- CREATE MATERIALIZED VIEW LOG             0				
+-- CREATE SYNONYM                           0				
+-- CREATE TABLESPACE                        0				
+-- CREATE USER                              0				
+-- 				
+-- DROP TABLESPACE                          0				
+-- DROP DATABASE                            0				
+-- 				
+-- REDACTION POLICY                         0				
+-- 				
+-- ORDS DROP SCHEMA                         0				
+-- ORDS ENABLE SCHEMA                       0				
+-- ORDS ENABLE OBJECT                       0				
+-- 				
+-- ERRORS                                   0				
+-- WARNINGS                                 0				
+				
